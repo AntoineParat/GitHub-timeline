@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GitHub Timeline</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- HERO -->
+      <section class="hero is-primary">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+                <a href="index.html">GitHub Timeline </a>
+            </h1>
+            <h2 class="subtitle">
+              Visualisez vos répertoires sous forme d'une timeline
+            </h2>
+          </div>
+        </div>
+      </section>
+      <!-- FORM -->
+      <form @submit.prevent="getUserTimeline" class="box">
+        <div class="field">
+          <label class="label"> Nom d'utilisateur</label>
+          <div class="control">
+            <input
+              :class="['input', classe ]"
+              type="text"
+              placeholder="Entrez un nom d'utilisateur"
+              v-model="username"
+            />
+            <span class="error" v-if="error">{{errorMsg}}</span>
+          </div>
+        </div>
+        <button type="submit" class="button is-primary">Rechercher</button>
+      </form>
+
+      <!-- TIMELINE -->
+      <div class="container" v-if="timeline.length > 0">
+        <div class="timeline">
+          <div
+            v-for="(time, index) in timeline"
+            :key="index"
+            :class="[{'cont right' : index % 2 === 0},{'cont left' : index % 2 != 0}]"
+          >
+            <div class="content">
+              <h2>{{ time.date }}</h2>
+              <h3>{{ time.name }}</h3>
+              <p>{{ time.content }}</p>
+              <div id="links">
+              <button class="button is-warning is-rounded">
+                <a target="_blank" :href="time.link">Page Github</a>
+              </button>
+              <button class="button is-warning is-rounded" v-if="time.website">
+                  <a target="_blank" :href="time.website">Site Web</a>
+              </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
+</html>
