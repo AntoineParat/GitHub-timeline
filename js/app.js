@@ -26,6 +26,10 @@ new Vue({
           this.errorMsg = null;
           this.classe = "is-primary";
           response.data.forEach(element => {
+            if (element.created_at === "2019-07-27T17:30:08Z" ) {
+              element.created_at = "2019-02-22T17:10:36Z";
+              element.sortByDate = "2019-02-22T17:10:36Z" 
+            }
             let date = this.getDateFormat(element.created_at);
             this.timeline.push({
               sortByDate: new Date(element.created_at),
@@ -55,13 +59,6 @@ new Vue({
       const yyyy = today.getFullYear();
       return (date = `${dd}/${mm}/${yyyy}`);
     },
-    // scrollFunction() {
-    //   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    //     document.getElementById("myBtn").style.display = "block";
-    //   } else {
-    //     document.getElementById("myBtn").style.display = "none";
-    //   }
-    // },
     topFunction() {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
