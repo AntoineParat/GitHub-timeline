@@ -7,6 +7,15 @@ new Vue({
     errorMsg: null,
     classe: "is-primary"
   },
+  mounted() {
+    window.onscroll = function() {
+      if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+        document.getElementById("myBtn").style.display = "block";
+      } else {
+        document.getElementById("myBtn").style.display = "none";
+      }
+    };
+  },
   methods: {
     getUserTimeline() {
       axios
@@ -45,6 +54,17 @@ new Vue({
       const mm = String(today.getMonth() + 1).padStart(2, "0");
       const yyyy = today.getFullYear();
       return (date = `${dd}/${mm}/${yyyy}`);
+    },
+    // scrollFunction() {
+    //   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    //     document.getElementById("myBtn").style.display = "block";
+    //   } else {
+    //     document.getElementById("myBtn").style.display = "none";
+    //   }
+    // },
+    topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     }
   }
 });
