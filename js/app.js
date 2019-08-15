@@ -1,7 +1,7 @@
 new Vue({
   el: "#app",
   data: {
-    username: 'AntoineParat,
+    username: 'AntoineParat',
     timeline: [],
     error: false,
     errorMsg: null,
