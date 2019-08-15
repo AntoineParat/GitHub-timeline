@@ -1,11 +1,14 @@
 new Vue({
   el: "#app",
   data: {
-    username: null,
+    username: 'AntoineParat,
     timeline: [],
     error: false,
     errorMsg: null,
     classe: "is-primary"
+  },
+  created(){
+    this.getUserTimeline()
   },
   mounted() {
     window.onscroll = function() {
